@@ -17,7 +17,7 @@
   hg clone https://alexaandrov@bitbucket.org/royalads/anr --branch dev
   ```
   * Или распаковать вручную например с помощью файлового менеджера
-3. Отредактировать файл common/config/main.php
+3. Отредактировать файл common/config/main-local.php
   ```
    return [
     'components' => [
