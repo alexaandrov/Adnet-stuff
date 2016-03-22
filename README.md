@@ -3,21 +3,31 @@
 Установка
 ------------
 1. Импортировать в базу данных таблицы из /install/db-export.sql
-  * Если нужно поменять YourSchema на любое другое называние. По умолчанию стоит adnetdb.
+  * Если нужно поменять YourSchema на любое другое называние. По умолчанию установленно название adnetdb.
   ```
-  -- -----------------------------------------------------
-  -- Создание и выбор схемы.
-  -- Схему adnetdb можно заменить на любую другую.
-  -- -----------------------------------------------------
   CREATE SCHEMA IF NOT EXISTS YourShema DEFAULT CHARACTER SET utf8 ;
   USE YourShema;
   ```
   * С помощью сторонней программы запустить скрипт, например с помощью MySQL Workbench.
   * Или перейти в www.domain/phpmyadmin -> SQL и скопировать содержание файла db-export.sql в поле для sql запросов и выполнить скрипт.
   * P.S. Никаких ошибок быть не должно.
-2. Скачать и распаковать сайт в */www/html
+2. Скачать и распаковать сайт например в somedir/www/html/adnet
   * С помощью mericurial:
   ```
   hg clone https://alexaandrov@bitbucket.org/royalads/anr --branch dev
   ```
-  * Или распаковать вручную
+  * Или распаковать вручную например с помощью файлового менеджера
+3. Отредактировать файл common/config/main.php
+  ```
+   return [
+    'components' => [
+        'db' => [
+            'class' => 'yii\db\Connection',
+            'dsn' => 'mysql:host=localhost;dbname=adnetdb', // adnetdb - имя схемы, которую мы указывали в пункте №1. 
+            'username' => 'root', // Имя пользователя базы данных
+            'password' => 'password', // Пароль от базы данных
+            'charset' => 'utf8',
+        ],
+        ///
+  ```
+ 
